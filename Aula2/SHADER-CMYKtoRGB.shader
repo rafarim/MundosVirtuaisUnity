@@ -2,10 +2,10 @@ Shader "Selner/Aula2/CMYKtoRGB"
 {
     Properties
     {
-        _Col1 ("C", Range(0.0, 1.0)) = 0.0
-        _Col2 ("M", Range(0.0, 1.0)) = 0.0
-        _Col3 ("Y", Range(0.0, 1.0)) = 0.0
-        _Col4 ("K", Range(0.0, 1.0)) = 0.0
+        _C ("Cyan 0-1", Range(0.0, 1.0)) = 0.0
+        _M ("Magenta 0-1", Range(0.0, 1.0)) = 0.0
+        _Y ("Yellow 0-1", Range(0.0, 1.0)) = 0.0
+        _K ("Key 0-1", Range(0.0, 1.0)) = 0.0
     }
     SubShader
     {
@@ -13,10 +13,10 @@ Shader "Selner/Aula2/CMYKtoRGB"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            float _Col1;
-            float _Col2;
-            float _Col3;
-            float _Col4;
+            float _C;
+            float _M;
+            float _Y;
+            float _K;
 
             float4 vert(float4 vertexPos:POSITION) :SV_POSITION
             {
@@ -24,11 +24,10 @@ Shader "Selner/Aula2/CMYKtoRGB"
             }
             float4 frag() :Color
             {
-                float r = 1.0 * (1.0 - _Col1) * (1 - _Col4);
-                float g = 1.0 * (1.0 - _Col2) * (1 - _Col4);
-                float b = 1.0 * (1.0 - _Col3) * (1 - _Col4);
-                float4 col = float4(r,g,b,1); 
-                return col;
+                return float4(1.0 * (1.0 - _C) * (1 - _K) , 
+                            1.0 * (1.0 - _M) * (1 - _K), 
+                            1.0 * (1.0 - _Y) * (1 - _K),
+                            1);
             }
 
             ENDCG
