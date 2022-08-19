@@ -1,4 +1,4 @@
-Shader "Selner/Aula2/PrimeiroContato"
+Shader "Selner/Aula2/Example"
 {
     Properties
     {
